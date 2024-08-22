@@ -13,7 +13,7 @@ jobs:
     # We need cosign to verify the Minder client
     - uses: sigstore/cosign-installer@v3.6.0
     # Install the Minder client
-    - uses: github.com/stacklok/minder-client-installer@latest
+    - uses: stacklok/minder-client-installer@latest
     # Use it!
     - run: minder --help
 ```
