@@ -66,7 +66,7 @@ runs:
           SUDO=sudo
         fi
 
-        release_version=%{ inputs.release }
+        release_version=${{ inputs.release }}
         if [[ $release_version == 'latest' ]]; then
           log_info "Fetching latest release version..."
           release_version=$(curl -s https://api.github.com/repos/stacklok/minder/releases/latest | jq -r '.tag_name')
