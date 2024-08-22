@@ -140,7 +140,7 @@ runs:
         log_info "Verifying signature of desired release"
         cosign verify-blob \
           --certificate ${desired_minder_filename}.pem \
-          --certificate-identity "releaser.yml" \
+          --certificate-identity "https://github.com/stacklok/minder/.github/workflows/releaser.yml@refs/tags/${release_version}" \
           --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \
           --signature ${desired_minder_filename}${compression_extension}.sig \
           ${desired_minder_filename}${compression_extension}
