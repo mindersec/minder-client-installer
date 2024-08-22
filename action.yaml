@@ -138,7 +138,7 @@ runs:
 
         # Verify the signature
         log_info "Verifying signature of desired release"
-        cosign verify-blob --key ${desired_minder_filename}.pem --signature ${desired_minder_filename}${compression_extension}.sig ${desired_minder_filename}${compression_extension}
+        cosign verify-blob --certificate ${desired_minder_filename}.pem --signature ${desired_minder_filename}${compression_extension}.sig ${desired_minder_filename}${compression_extension}
 
         # Extract the desired release
         log_info "Extracting desired release"
