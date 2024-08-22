@@ -35,7 +35,6 @@ runs:
         set -e
 
         mkdir -p ${{ inputs.install-dir }}
-        dest=${{ inputs.install-dir }}/minder
 
         shaprog() {
           case ${{ runner.os }} in
@@ -166,10 +165,6 @@ runs:
         # Make the extracted file executable
         log_info "Making extracted file executable"
         $SUDO chmod +x ${minder_executable_name}
-
-        # Move the extracted file to the desired location
-        log_info "Moving extracted file to desired location"
-        $SUDO mv ${minder_executable_name} ${dest}
 
         log_info "Installation complete!"
     - if: ${{ runner.os == 'Linux' || runner.os == 'macOS' }}
