@@ -34,6 +34,12 @@ runs:
         fi
         set -e
 
+        # Check if cosign is installed
+        if ! command -v cosign &> /dev/null; then
+          log_error "cosign is not installed. Please install cosign before running this action."
+          exit 1
+        fi
+
         mkdir -p ${{ inputs.install-dir }}
 
         shaprog() {
