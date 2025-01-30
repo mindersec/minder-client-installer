@@ -1,6 +1,6 @@
 # action.yml
 name: minder-client-installer
-author: stacklok
+author: mindersec
 description: 'Installs the Minder client and includes it in your path'
 branding:
   icon: 'package'
@@ -74,7 +74,7 @@ runs:
         release_version=${{ inputs.release }}
         if [[ $release_version == 'latest' ]]; then
           log_info "Fetching latest release version..."
-          release_version=$(curl -s https://api.github.com/repos/stacklok/minder/releases/latest | jq -r '.tag_name')
+          release_version=$(curl -s https://api.github.com/repos/mindersec/minder/releases/latest | jq -r '.tag_name')
         fi
 
         # Remove the 'v' prefix from the release version
@@ -135,17 +135,17 @@ runs:
         esac
 
         # Download the desired release
-        $SUDO curl -fsL https://github.com/stacklok/minder/releases/download/${release_version}/${desired_minder_filename}${compression_extension} -o ${desired_minder_filename}${compression_extension}
+        $SUDO curl -fsL https://github.com/mindersec/minder/releases/download/${release_version}/${desired_minder_filename}${compression_extension} -o ${desired_minder_filename}${compression_extension}
         # Download the detached signature
-        $SUDO curl -fsL https://github.com/stacklok/minder/releases/download/${release_version}/${desired_minder_filename}${compression_extension}.sig -o ${desired_minder_filename}${compression_extension}.sig
+        $SUDO curl -fsL https://github.com/mindersec/minder/releases/download/${release_version}/${desired_minder_filename}${compression_extension}.sig -o ${desired_minder_filename}${compression_extension}.sig
         # Download the PEM
-        $SUDO curl -fsL https://github.com/stacklok/minder/releases/download/${release_version}/${desired_minder_filename}.pem -o ${desired_minder_filename}.pem
+        $SUDO curl -fsL https://github.com/mindersec/minder/releases/download/${release_version}/${desired_minder_filename}.pem -o ${desired_minder_filename}.pem
 
         # Verify the signature
         log_info "Verifying signature of desired release"
         cosign verify-blob \
           --certificate ${desired_minder_filename}.pem \
-          --certificate-identity "https://github.com/stacklok/minder/.github/workflows/releaser.yml@refs/tags/${release_version}" \
+          --certificate-identity "https://github.com/mindersec/minder/.github/workflows/releaser.yml@refs/tags/${release_version}" \
           --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \
           --signature ${desired_minder_filename}${compression_extension}.sig \
           ${desired_minder_filename}${compression_extension}
