@@ -9,7 +9,7 @@ inputs:
   release:
     description: 'minder client release version to be installed'
     required: false
-    default: 'v0.2.2'
+    default: 'v0.3.0'
   install-dir:
     description: 'Where to install the binary'
     required: false
