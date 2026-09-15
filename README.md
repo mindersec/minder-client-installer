@@ -9,11 +9,11 @@ jobs:
   install-minder:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7.0.1
     # We need cosign to verify the Minder client
-    - uses: sigstore/cosign-installer@v3.6.0
+    - uses: sigstore/cosign-installer@v4.1.2
     # Install the Minder client
-    - uses: stacklok/minder-client-installer@main
+    - uses: mindersec/minder-client-installer@v1.1.3  # Pin this to a SHA
     # Use it!
     - run: minder --help
 ```
