@@ -13,7 +13,7 @@ jobs:
     # We need cosign to verify the Minder client
     - uses: sigstore/cosign-installer@v4.1.2
     # Install the Minder client
-    - uses: mindersec/minder-client-installer@v1.1.3  # Pin this to a SHA
+    - uses: mindersec/minder-client-installer@v1.1.3  # Recommended: pin this to the release SHA, not a tag
     # Use it!
     - run: minder --help
 ```
